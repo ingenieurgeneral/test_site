@@ -80,6 +80,7 @@ ActiveRecord::Schema.define(version: 20140211165941) do
     t.datetime "time_spent"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "card_type"
   end
 
   add_index "lessonrelationships", ["lesson_id", "user_id"], name: "index_lessonrelationships_on_lesson_id_and_user_id", unique: true, using: :btree

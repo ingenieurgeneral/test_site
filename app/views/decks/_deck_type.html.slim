@@ -1,0 +1,11 @@
+= select_tag "deck_type", options_for_select(Conf.decks.types, object.class.to_s)
+
+javascript:
+  $('#deck_type').change(function() {
+    if($(this).val() == "Lesson")
+      window.location='#{new_deck_lesson_path(object.deck)}';
+    if($(this).val() == "Flashcard")
+      window.location='#{new_deck_flashcard_path(object.deck)}';
+    if($(this).val() == "Questionnaire")
+      window.location='#{new_deck_questionnaire_path(object.deck)}';
+  });

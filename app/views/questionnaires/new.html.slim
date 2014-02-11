@@ -1,6 +1,9 @@
 h3 Create New Deck
 
-.col-lg-5.col-centered
+.col-lg-3.col-centered
+  = render "/decks/deck_info", {deck: @deck}
+    
+.col-lg-9.col-centered
   div#questionnaire_form
     = render "form", {deck: @deck, questionnaire: @questionnaire, number_of_possible_answers: @number_of_possible_answers}
 

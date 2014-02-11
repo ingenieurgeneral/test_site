@@ -1,5 +1,5 @@
 = simple_form_for [deck, questionnaire], html: { class: 'form-horizontal' } do |f|
-  = select_tag "deck_type", options_for_select(Conf.decks.types, questionnaire.class.to_s)
+  = render "/decks/deck_type", {object: @questionnaire}
   = f.input :question, as: :text
   = text_field_tag "number_of_possible_answers", number_of_possible_answers
   = f.simple_fields_for :questionnaire_answers do |answer|
