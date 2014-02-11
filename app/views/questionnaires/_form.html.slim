@@ -1,0 +1,20 @@
+= simple_form_for [deck, questionnaire], html: { class: 'form-horizontal' } do |f|
+  = select_tag "deck_type", options_for_select(Conf.decks.types, questionnaire.class.to_s)
+  = f.input :question, as: :text
+  = text_field_tag "number_of_possible_answers", number_of_possible_answers
+  = f.simple_fields_for :questionnaire_answers do |answer|
+     = answer.input :answer, as: :text
+
+  .form-actions
+    = f.button :submit, "FINISH PUBLISH DECK", class: 'btn-primary'
+    = link_to "NEW LESSON", new_deck_lesson_path(deck)
+
+javascript:
+  $('#number_of_possible_answers').on('keyup', function (e) {
+    if(e.keyCode >= 48 && e.keyCode <=57){
+      $.ajax({
+        url: '#{new_deck_questionnaire_path(@deck)}.js',
+        data: {number_of_possible_answers: $('#number_of_possible_answers').val(), deck_id: #{@deck.id}}
+      });
+    }
+  });

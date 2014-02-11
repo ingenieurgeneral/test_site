@@ -8,6 +8,13 @@ class QuestionnairesController < ApplicationController
 
 	def new
 		@questionnaire = @deck.questionnaires.new
+
+    if params[:number_of_possible_answers]
+      @number_of_possible_answers = params[:number_of_possible_answers].to_i
+    else
+      @number_of_possible_answers = @deck.questionnaire_answers_count
+    end
+    @number_of_possible_answers.times { @questionnaire.questionnaire_answers.build }
 	end
 
 	def create
@@ -21,14 +28,14 @@ class QuestionnairesController < ApplicationController
 
 	private
 	def set_deck
-	@deck = current_user.authored_decks.find params[:deck_id]
+    @deck = current_user.authored_decks.find params[:deck_id]
 	end
 
 	def set_questionnaire
-	@questionnaire = @deck.questionnaires.find params[:id]
+    @questionnaire = @deck.questionnaires.find params[:id]
 	end
 
 	def questionnaire_params
-	params[:questionnaire].permit(:body)
+    params[:questionnaire, :answers_attributes => [:id, :answer, :questionnaire_id]].permit(:body)
 	end
 end

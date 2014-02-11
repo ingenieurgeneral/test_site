@@ -1,0 +1,12 @@
+h3 Create New Deck
+
+.col-lg-5.col-centered
+  = simple_form_for [@deck, @flashcard], html: { class: 'form-horizontal' } do |f|
+    = select_tag "deck_type", options_for_select(Conf.decks.types, @flashcard.class.to_s)
+    = f.input :question, as: :text
+    = f.input :answer, as: :text
+    = text_field_tag "title", nil
+
+    .form-actions
+      = f.button :submit, "FINISH PUBLISH DECK", class: 'btn-primary'
+      = link_to "NEW LESSON", new_deck_lesson_path(@deck)

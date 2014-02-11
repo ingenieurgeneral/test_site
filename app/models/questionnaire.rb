@@ -3,6 +3,8 @@ class Questionnaire < ActiveRecord::Base
 	has_many :cardrelationships, foreign_key: "card_id", dependent: :destroy
 	has_many :learners, through: :cardrelationships, source: :user
 	has_many :questionnaire_answers
+  accepts_nested_attributes_for :questionnaire_answers
+  
 	validates :deck_id, presence: true
 	validates :question, presence: true
 end
