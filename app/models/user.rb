@@ -7,10 +7,15 @@ class User < ActiveRecord::Base
 	has_many :deckrelationships, foreign_key: "follower_id", dependent: :destroy
 	has_many :followed_decks, through: :deckrelationships, source: :followed_deck
 
-	has_many :cardrelationships, dependent: :destroy
-	has_many :lessons, through: :cardrelationships, source: :card
-	has_many :flashcards, through: :cardrelationships, source: :card
-	has_many :questionnaires, through: :cardrelationships, source: :card
+	has_many :lessonrelationships, dependent: :destroy
+	has_many :lessons, through: :lessonrelationships, source: :lesson
+
+	has_many :flashcardrelationships, dependent: :destroy
+	has_many :flashcards, through: :flashcardrelationships, source: :flashcard
+
+	has_many :mcqrelationships, dependent: :destroy
+	has_many :questionnaires, through: :mcqrelationships, source: :questionnaire
+
 
 	before_save { self.email = email.downcase }
 	validates :first_name, length: { maximum: 50 }

@@ -11,23 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140210134711) do
+ActiveRecord::Schema.define(version: 20140211165941) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "cardrelationships", force: true do |t|
-    t.integer  "card_id"
-    t.integer  "user_id"
-    t.integer  "score"
-    t.datetime "time_spent"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "cardrelationships", ["card_id", "user_id"], name: "index_cardrelationships_on_card_id_and_user_id", unique: true, using: :btree
-  add_index "cardrelationships", ["card_id"], name: "index_cardrelationships_on_card_id", using: :btree
-  add_index "cardrelationships", ["user_id"], name: "index_cardrelationships_on_user_id", using: :btree
 
   create_table "deckrelationships", force: true do |t|
     t.integer  "followed_deck_id"
@@ -62,6 +49,19 @@ ActiveRecord::Schema.define(version: 20140210134711) do
     t.datetime "updated_at"
   end
 
+  create_table "flashcardrelationships", force: true do |t|
+    t.integer  "flashcard_id"
+    t.integer  "user_id"
+    t.integer  "score"
+    t.datetime "time_spent"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "flashcardrelationships", ["flashcard_id", "user_id"], name: "index_flashcardrelationships_on_flashcard_id_and_user_id", unique: true, using: :btree
+  add_index "flashcardrelationships", ["flashcard_id"], name: "index_flashcardrelationships_on_flashcard_id", using: :btree
+  add_index "flashcardrelationships", ["user_id"], name: "index_flashcardrelationships_on_user_id", using: :btree
+
   create_table "flashcards", force: true do |t|
     t.integer  "deck_id"
     t.text     "question"
@@ -73,6 +73,19 @@ ActiveRecord::Schema.define(version: 20140210134711) do
 
   add_index "flashcards", ["deck_id"], name: "index_flashcards_on_deck_id", using: :btree
 
+  create_table "lessonrelationships", force: true do |t|
+    t.integer  "lesson_id"
+    t.integer  "user_id"
+    t.integer  "score"
+    t.datetime "time_spent"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "lessonrelationships", ["lesson_id", "user_id"], name: "index_lessonrelationships_on_lesson_id_and_user_id", unique: true, using: :btree
+  add_index "lessonrelationships", ["lesson_id"], name: "index_lessonrelationships_on_lesson_id", using: :btree
+  add_index "lessonrelationships", ["user_id"], name: "index_lessonrelationships_on_user_id", using: :btree
+
   create_table "lessons", force: true do |t|
     t.integer  "deck_id"
     t.string   "title"
@@ -83,6 +96,19 @@ ActiveRecord::Schema.define(version: 20140210134711) do
   end
 
   add_index "lessons", ["deck_id"], name: "index_lessons_on_deck_id", using: :btree
+
+  create_table "mcqrelationships", force: true do |t|
+    t.integer  "mcq_id"
+    t.integer  "user_id"
+    t.integer  "score"
+    t.datetime "time_spent"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "mcqrelationships", ["mcq_id", "user_id"], name: "index_mcqrelationships_on_mcq_id_and_user_id", unique: true, using: :btree
+  add_index "mcqrelationships", ["mcq_id"], name: "index_mcqrelationships_on_mcq_id", using: :btree
+  add_index "mcqrelationships", ["user_id"], name: "index_mcqrelationships_on_user_id", using: :btree
 
   create_table "questionnaire_answers", force: true do |t|
     t.integer  "questionnaire_id"
