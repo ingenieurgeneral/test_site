@@ -8,9 +8,9 @@ class User < ActiveRecord::Base
 	has_many :followed_decks, through: :deckrelationships, source: :followed_deck
 
 	has_many :cardrelationships, dependent: :destroy
-	has_many :lessons, through: :cardrelationships, source: :card
-	has_many :flashcards, through: :cardrelationships, source: :card
-	has_many :questionnaires, through: :cardrelationships, source: :card
+	has_many :lessons, -> { where("cardrelationships.card_type = 'lesson'") }, through: :cardrelationships, foreign_key: "card_id"  
+	has_many :flashcards, -> { where("cardrelationships.card_type = 'flashcard'") }, through: :cardrelationships, foreign_key: "card_id"
+	has_many :questionnaires, -> { where("cardrelationships.card_type = 'questionnaire'") }, through: :cardrelationships, foreign_key: "card_id"  
 
 	before_save { self.email = email.downcase }
 	validates :first_name, length: { maximum: 50 }

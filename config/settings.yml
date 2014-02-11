@@ -11,6 +11,10 @@ countries:
   - Russia
 
 decks:
+  types:
+    - Lesson
+    - Flashcard
+    - Questionnaire
   levels:
     - Start
     - Medium

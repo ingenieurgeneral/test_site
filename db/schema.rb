@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140210134711) do
+ActiveRecord::Schema.define(version: 20140211115604) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20140210134711) do
     t.datetime "time_spent"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "card_type"
   end
 
   add_index "cardrelationships", ["card_id", "user_id"], name: "index_cardrelationships_on_card_id_and_user_id", unique: true, using: :btree
