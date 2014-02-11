@@ -1,0 +1,10 @@
+.row
+  = search_form_for @search do |f|
+    .col-lg-9
+      h4
+        'Listing decks
+    .col-lg-3
+      .input-group
+        = f.text_field :title_or_description_cont, class: 'form-control'
+        span.input-group-btn
+          = f.button 'Find', class: 'btn btn-default', type: 'submit'

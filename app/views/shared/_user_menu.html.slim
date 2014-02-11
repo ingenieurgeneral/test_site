@@ -1,0 +1,11 @@
+li = link_to "Create a deck", new_deck_path
+li.dropdown
+  a.dropdown-toggle data-toggle="dropdown" href="#"
+    = current_user.email
+    '
+    b.caret
+  ul.dropdown-menu
+    li
+      a href="#" Settings
+    li.divider
+    li= link_to 'Logout', destroy_user_session_path, :method => :delete

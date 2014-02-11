@@ -1,0 +1,18 @@
+.navbar.navbar-default.navbar-static-top role="navigation"
+  .container
+    .navbar-header
+      a.navbar-brand href=(root_path)
+        ' Memopulse
+    .navbar-collapse.collapse
+      ul.nav.navbar-nav
+        li.active
+          = link_to 'Listing decks', decks_path if user_signed_in?
+        li
+          a href="#about" About
+        li
+          a href="#contact" Contact
+      ul.nav.navbar-nav.navbar-right
+        - if user_signed_in?
+          = render 'shared/user_menu'
+        - else
+          li= link_to 'Login', new_user_session_path

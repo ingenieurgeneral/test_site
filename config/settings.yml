@@ -1,0 +1,24 @@
+langs:
+  - english
+  - français
+  - español
+  - deutsch
+
+countries:
+  - United States
+  - France
+  - United Kingdom
+  - Russia
+
+decks:
+  levels:
+    - Start
+    - Medium
+    - Complex
+    - Expert
+
+  subjects:
+    - English
+    - Mathematics
+    - Statistics
+    - Physics

@@ -1,0 +1,16 @@
+= render 'decks/decks_search'
+'&nbsp;
+.row
+  table.table.table-striped.table-bordered
+    tr
+      th Deck title
+      th Description
+      th Mastery
+      th Actions
+    - @decks.each do |deck|
+      tr
+        td = link_to deck.title, deck_path(deck)
+        td = deck.description
+        td = "#{10 + rand(90)}%"
+        td = link_to 'learn', '#'
+  

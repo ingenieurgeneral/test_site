@@ -1,0 +1,16 @@
+h3 Create New Deck
+
+.col-lg-5.col-centered
+  = simple_form_for @deck, html: { class: 'form-horizontal' } do |f|
+    = f.input :title, label: 'Deck Title'
+    = f.input :description, as: :text
+    = f.input :language, collection: Conf.langs, include_blank: false
+    = f.input :country, collection: Conf.countries, include_blank: false
+    = f.input :level, collection: Conf.decks.levels, include_blank: false
+    = f.input :subject, collection: Conf.decks.subjects, include_blank: false
+    = f.input :chapter
+    = f.input :difficulty
+    = f.input :questionnaire_answers_count, required: true
+
+    .form-actions
+      = f.button :submit, class: 'btn-primary'
