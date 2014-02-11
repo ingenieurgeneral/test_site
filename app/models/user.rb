@@ -7,10 +7,22 @@ class User < ActiveRecord::Base
 	has_many :deckrelationships, foreign_key: "follower_id", dependent: :destroy
 	has_many :followed_decks, through: :deckrelationships, source: :followed_deck
 
+<<<<<<< HEAD
 	has_many :cardrelationships, dependent: :destroy
 	has_many :lessons, -> { where("cardrelationships.card_type = 'lesson'") }, through: :cardrelationships, foreign_key: "card_id"  
 	has_many :flashcards, -> { where("cardrelationships.card_type = 'flashcard'") }, through: :cardrelationships, foreign_key: "card_id"
 	has_many :questionnaires, -> { where("cardrelationships.card_type = 'questionnaire'") }, through: :cardrelationships, foreign_key: "card_id"  
+=======
+	has_many :lessonrelationships, dependent: :destroy
+	has_many :lessons, through: :lessonrelationships, source: :lesson
+
+	has_many :flashcardrelationships, dependent: :destroy
+	has_many :flashcards, through: :flashcardrelationships, source: :flashcard
+
+	has_many :mcqrelationships, dependent: :destroy
+	has_many :questionnaires, through: :mcqrelationships, source: :questionnaire
+
+>>>>>>> relationship-changes
 
 	before_save { self.email = email.downcase }
 	validates :first_name, length: { maximum: 50 }
